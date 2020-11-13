@@ -1,4 +1,8 @@
 ﻿import React, { Component } from 'react';
+import { Route } from 'react-router';
+import { NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom';
+
 
 export class ListUser extends Component {
     static displayName = ListUser.name;
@@ -26,6 +30,7 @@ export class ListUser extends Component {
                         <tr>
                             <td>{listaUsuarios.id}</td>
                             <td>{listaUsuarios.login}</td>
+                            <td><NavLink tag={Link} to="/editar">Editar</NavLink></td>
                         </tr>
                     )}
                 </tbody>
