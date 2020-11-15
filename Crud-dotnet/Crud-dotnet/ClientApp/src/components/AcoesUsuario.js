@@ -32,7 +32,6 @@ const AcoesUsuario = {
             method: 'GET',
         }).then(response => response.json())
             .then(data => console.log(data))
-            .then(data => AcoesUsuario.vai(data) )
         //data = response.json(),
         //new Editar(data)
             //this.setState({ id: data.id, login: data.login, senha: data.senha, loading: false });

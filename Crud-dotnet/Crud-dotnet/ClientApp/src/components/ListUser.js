@@ -18,6 +18,11 @@ export class ListUser extends Component {
     static renderListaUsuarios(listaUsuarios) {
         return (
             <Fragment>
+                <br />
+                <div>
+                    <Link to="/cadastroUsuario"><button className="btn btn-primary">Novo usuário</button></Link>
+                </div>
+                <br />
                 <table className='table table-striped' aria-labelledby="tabelLabel">
                     <thead>
                         <tr>
@@ -31,16 +36,12 @@ export class ListUser extends Component {
                             <tr key={usuario.id}>
                                 <td>{usuario.id}</td>
                                 <td>{usuario.login}</td>
-                                <td><Link><button className="btn btn-link" onClick={() => { AcoesUsuario.EditarUsuario(usuario.id) }}>Editar</button></Link></td>
+                                <td><button className="btn btn-link" onClick={() => { AcoesUsuario.EditarUsuario(usuario.id) }}>Editar</button></td>
                                 <td><button className="btn btn-link" onClick={() => { AcoesUsuario.deletarUsuario(usuario.id) }}>Deletar</button></td>
                             </tr>
                         )}
                     </tbody>
                 </table>
-                <br/>
-                <div>
-                    <Link to="/cadastroUsuario"><button className="btn btn-primary">Novo usuário</button></Link>
-                </div>
             </Fragment>
         );
     }

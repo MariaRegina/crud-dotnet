@@ -9,7 +9,7 @@ export class CadastroUsuario extends Component {
         this.state = {
             id: null,
             login: '',
-            senha: '',
+            senha: ''
         };
         this.atualizaLogin = this.atualizaLogin.bind(this);
         this.atualizaSenha = this.atualizaSenha.bind(this);
@@ -23,7 +23,7 @@ export class CadastroUsuario extends Component {
                 <h1 id="tabelLabel" >Criar usuário: </h1>
                 <br />
             </div>
-                <form onSubmit={this.RequisicaoEditar}>
+            <form onSubmit={this.RequisicaoEditar}>
                 <div className="input-group">
                     <div className="input-group-prepend">
                         <span className="input-group-text">login</span>
@@ -35,8 +35,8 @@ export class CadastroUsuario extends Component {
                     </div>
                     <input id="senha" onChange={this.atualizaSenha} type="password" className="form-control col-sm-4" />
                 </div>
-                    <br /><br />
-                    <input type="submit" className="btn btn-primary" value="Criar" />
+                <br /><br />
+                <input type="submit" className="btn btn-primary" value="Criar" />
             </form>
         </Fragment>
         )
