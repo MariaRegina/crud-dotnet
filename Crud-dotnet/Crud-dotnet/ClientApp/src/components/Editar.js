@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React, { Component, Fragment } from 'react';
 
 export class Editar extends Component {
 
@@ -6,47 +6,94 @@ export class Editar extends Component {
 
     constructor(props) {
         super(props);
+        //this.idUsuario = props;
+        console.log(props);
         this.state = {
-            id: props.id,
-            login: props.login,
-            senha: null,
+            usuario: props,
+            id: '',
+            login: '',
+            senha: '',
+            loading: true
         };
+        this.atualizaLogin = this.atualizaLogin.bind(this);
+        this.atualizaSenha = this.atualizaSenha.bind(this);
+       //this.populateData();
+    }
+
+    static renderUsuario(usuario) {
+
+        return (
+            <Fragment>
+                <div>
+                    <h1 id="tabelLabel" >Criar usuário: </h1>
+                    <br />
+                </div>
+                <form onSubmit={this.RequisicaoEditar}>
+                    <div className="input-group">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text">login</span>
+                        </div>
+                        <input id="login" value={usuario.login} onChange={this.atualizaLogin} type="text" className="form-control col-sm-4" />
+                        <div className="col-sm-1" />
+                        <div className="input-group-prepend">
+                            <span className="input-group-text">senha</span>
+                        </div>
+                        <input id="senha" value={usuario.senha} onChange={this.atualizaSenha} type="password" className="form-control col-sm-4" />
+                    </div>
+                    <br /><br />
+                    <input type="submit" className="btn btn-primary" value="Editar" />
+                </form>
+            </Fragment>
+        );
     }
 
     render() {
-        return (<div>
+        let contents = Editar.renderUsuario(this.usuario);
+
+        return (
             <div>
-                <h1 id="tabelLabel" >Criar usuário: </h1>
-                <br />
+                <h1 id="tabelLabel" >Usuários:</h1>
+                {contents}
             </div>
-            <div className="input-group">
-                <div className="input-group-prepend">
-                    <span className="input-group-text" id="login">login</span>
-                </div>
-                <input type="text" className="form-control col-sm-4" defaultValue={this.state.login} />
-                <div className="col-sm-1" />
-                <div className="input-group-prepend">
-                    <span className="input-group-text" id="senha">senha</span>
-                </div>
-                <input type="password" className="form-control col-sm-4" />
-            </div>
-            <br /><br />
-            <button type="button" className="btn btn-primary" onClick={this.RequisicaoEditar}>Gravar</button>
-        </div>)
+        );
     }
 
-    RequisicaoEditar() {
+    atualizaLogin(event) {
+        this.setState({ login: event.target.value });
+    }
 
-        fetch('api/Usuario/{id}', {
+    atualizaSenha(event) {
+        this.setState({ senha: event.target.value });
+    }
+
+   /* async populateData() {
+        if (!this.idUsuario)
+            return;
+        console.log('ID: ' + this.idUsuario);
+        const response = await fetch('api/Usuario/' + this.idUsuario, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
-            //body: JSON.stringify({ id: id }),
-        })
-            .then(response => response.json)
-            .then(data => this.setState({ id: data.id, login: data.login, senha: data.senha }))
-    };
+        });
+        const data = await response.json();
+        this.setState({ id: data.id, login: data.login, senha: data.senha, loading: false });
+        
+        //this.render;
+        //this.render;
+        //const data = response.json();
+        //this.setState({ usuario: data, loading: false });
+    }
+
+    editarUsuario() {
+        fetch('api/Usuario/' + this.state.id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: this.state.usuario.id, login: this.state.usuario.login, senha: this.state.usuario.senha }),
+        });
+    }*/
 }
 
 export default Editar;

@@ -40,7 +40,6 @@
     <None Remove="ClientApp\src\components\Counter.js" />
     <None Remove="ClientApp\src\components\FetchData.js" />
     <None Remove="ClientApp\src\components\JavaScript.js" />
-    <None Remove="ClientApp\src\components\Usuario.js" />
   </ItemGroup>
 
   <ItemGroup>

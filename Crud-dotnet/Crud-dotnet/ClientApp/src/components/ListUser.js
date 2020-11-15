@@ -1,6 +1,5 @@
 ﻿import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { Editar } from './Editar.js';
 import AcoesUsuario from './AcoesUsuario.js';
 
 
@@ -32,15 +31,15 @@ export class ListUser extends Component {
                             <tr key={usuario.id}>
                                 <td>{usuario.id}</td>
                                 <td>{usuario.login}</td>
-                                <td><Link to="/editar"><button onClick={() => { new Editar(usuario) }}>Editar</button></Link></td>
-                                <td><button onClick={() => { AcoesUsuario.deletarUsuario(usuario.id) }}>Deletar</button></td>
+                                <td><Link><button className="btn btn-link" onClick={() => { AcoesUsuario.EditarUsuario(usuario.id) }}>Editar</button></Link></td>
+                                <td><button className="btn btn-link" onClick={() => { AcoesUsuario.deletarUsuario(usuario.id) }}>Deletar</button></td>
                             </tr>
                         )}
                     </tbody>
                 </table>
                 <br/>
                 <div>
-                    <button type="button" className="btn btn-primary"><Link to="/cadastroUsuario">Novo usuário</Link></button>
+                    <Link to="/cadastroUsuario"><button className="btn btn-primary">Novo usuário</button></Link>
                 </div>
             </Fragment>
         );
