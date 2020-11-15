@@ -1,7 +1,7 @@
-﻿import React, { Component } from 'react';
-import { Route } from 'react-router';
-import { NavLink } from 'reactstrap';
+﻿import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { Editar } from './Editar.js';
+import AcoesUsuario from './AcoesUsuario.js';
 
 
 export class ListUser extends Component {
@@ -18,23 +18,31 @@ export class ListUser extends Component {
 
     static renderListaUsuarios(listaUsuarios) {
         return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>login</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {listaUsuarios.map(listaUsuarios =>
+            <Fragment>
+                <table className='table table-striped' aria-labelledby="tabelLabel">
+                    <thead>
                         <tr>
-                            <td>{listaUsuarios.id}</td>
-                            <td>{listaUsuarios.login}</td>
-                            <td><NavLink tag={Link} to="/editar">Editar</NavLink></td>
+                            <th>id</th>
+                            <th>login</th>
+                            <th></th><th></th>
                         </tr>
-                    )}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {listaUsuarios.map(usuario =>
+                            <tr key={usuario.id}>
+                                <td>{usuario.id}</td>
+                                <td>{usuario.login}</td>
+                                <td><Link to="/editar"><button onClick={() => { new Editar(usuario) }}>Editar</button></Link></td>
+                                <td><button onClick={() => { AcoesUsuario.deletarUsuario(usuario.id) }}>Deletar</button></td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+                <br/>
+                <div>
+                    <button type="button" className="btn btn-primary"><Link to="/cadastroUsuario">Novo usuário</Link></button>
+                </div>
+            </Fragment>
         );
     }
 
@@ -58,3 +66,5 @@ export class ListUser extends Component {
         this.setState({ listaUsuarios: data, loading: false });
     }
 }
+
+export default ListUser;

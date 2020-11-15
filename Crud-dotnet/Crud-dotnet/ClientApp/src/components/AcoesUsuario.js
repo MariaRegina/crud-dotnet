@@ -1,11 +1,15 @@
-﻿import React from 'react';
+﻿const AcoesUsuario = {
 
-const AcoesUsuario = {
-
-    SalvarDado: (id) => (
-        alert('vai')
-    )
-
+    deletarUsuario: (id) => (
+        fetch(('api/Usuario/' + id), {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: id }),
+        }),
+        window.location.reload(false)
+    ),
 }
 
 export default AcoesUsuario;

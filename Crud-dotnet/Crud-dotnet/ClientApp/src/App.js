@@ -4,6 +4,7 @@ import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { ListUser } from './components/ListUser';
 import { Editar } from './components/Editar';
+import { CadastroUsuario } from './components/CadastroUsuario';
 
 import './custom.css'
 
@@ -16,6 +17,7 @@ export default class App extends Component {
         <Route exact path='/' component={Home}/>
             <Route path='/listUser' component={ListUser}/>
             <Route path='/editar' component={Editar}/>
+            <Route path='/cadastroUsuario' component={CadastroUsuario}/>
       </Layout>
     );
   }
