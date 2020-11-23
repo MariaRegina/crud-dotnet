@@ -1,6 +1,4 @@
-﻿import { Redirect } from 'react-router-dom'
-import React from 'react';
-
+﻿
 const AcoesUsuario = {
 
     deletarUsuario: (id) => (
@@ -25,21 +23,18 @@ const AcoesUsuario = {
         })
     ),
 
-    EditarUsuario: (idUsuario) => (
-        //console.log('ID: ' + idUsuario)
-        //response =
-        fetch('api/Usuario/' + idUsuario, {
-            method: 'GET',
-        }).then(response => response.json())
-            .then(data => console.log(data))
-        //data = response.json(),
-        //new Editar(data)
-            //this.setState({ id: data.id, login: data.login, senha: data.senha, loading: false });
+    EditarUsuario: (usuario) => (
+        fetch('api/Usuario/' + usuario.id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: usuario.id, login: usuario.login, senha: usuario.senha })
+        })
     ),
 
     vai: (data) => (
-        console.log(data),
-        <Redirect to='/cadastroUsuario' />
+        console.log(data)
     )
 
 }

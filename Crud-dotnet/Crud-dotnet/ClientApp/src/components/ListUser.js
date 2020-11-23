@@ -36,7 +36,14 @@ export class ListUser extends Component {
                             <tr key={usuario.id}>
                                 <td>{usuario.id}</td>
                                 <td>{usuario.login}</td>
-                                <td><button className="btn btn-link" onClick={() => { AcoesUsuario.EditarUsuario(usuario.id) }}>Editar</button></td>
+                                <td>
+                                    <Link tag={Link} className="btn btn-link" to={{
+                                        pathname: "/editar",
+                                        aboutProps: {
+                                            idUsuario: usuario.id
+                                        }
+                                    }}>Editar</Link>
+                                </td>
                                 <td><button className="btn btn-link" onClick={() => { AcoesUsuario.deletarUsuario(usuario.id) }}>Deletar</button></td>
                             </tr>
                         )}
